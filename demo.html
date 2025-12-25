@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameSpot - Crypto Casino Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-bg: #0a0a1f;
+      --secondary-bg: #13132b;
+      --accent-purple: #6B4FD4;
+      --accent-pink: #E84393;
+      --accent-cyan: #00D9FF;
+      --text-primary: #ffffff;
+      --text-secondary: #b8b8d8;
+      --text-muted: #7a7a9e;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .app::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(107, 79, 212, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(232, 67, 147, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 80px;
+      background: rgba(19, 19, 43, 0.95);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(107, 79, 212, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      z-index: 1000;
+      transition: width 0.3s ease;
+    }
+
+    .sidebar:hover {
+      width: 240px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 16px;
+      margin-bottom: 32px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .sidebar:hover .logo-text {
+      opacity: 1;
+    }
+
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      margin: 4px 0;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      background: rgba(107, 79, 212, 0.1);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(107, 79, 212, 0.2);
+      color: var(--text-primary);
+    }
+
+    .nav-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .nav-label {
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .sidebar:hover .nav-label {
+      opacity: 1;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(19, 19, 43, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(107, 79, 212, 0.2);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(107, 79, 212, 0.2);
+      border-radius: 16px;
+      padding: 12px 20px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .balance-display {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(107, 79, 212, 0.2);
+      border-radius: 12px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(107, 79, 212, 0.2);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .icon-button:hover {
+      background: rgba(107, 79, 212, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .profile-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-color: transparent;
+    }
+
+    /* Content */
+    .content-wrapper {
+      padding: 24px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #1e1344 0%, #2d1b69 50%, #1a103f 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(107, 79, 212, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(232, 67, 147, 0.2) 0%, transparent 40%);
+      animation: aurora 8s ease-in-out infinite;
+    }
+
+    @keyframes aurora {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      padding: 32px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .banner-title {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .highlight {
+      color: #FFD700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    .banner-subtitle {
+      font-size: 16px;
+      font-weight: 600;
+      color: #FFB84D;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .banner-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    /* Game Grid */
+    .category-tabs {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding: 16px;
+      background: rgba(19, 19, 43, 0.5);
+      border-radius: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 12px 20px;
+      background: transparent;
+      border: none;
+      border-radius: 12px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab:hover {
+      color: var(--text-primary);
+      background: rgba(107, 79, 212, 0.1);
+    }
+
+    .tab.active {
+      color: var(--text-primary);
+      background: rgba(107, 79, 212, 0.2);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-title h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .game-card {
+      position: relative;
+      background: #5B4A8F;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .game-card:first-child {
+      grid-row: span 2;
+      aspect-ratio: 3/3.5;
+    }
+
+    .game-image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      padding: 32px;
+    }
+
+    .game-info {
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .game-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .game-provider {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #00E676 0%, #00C853 100%);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 230, 118, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 60px;
+      }
+      
+      .sidebar:hover {
+        width: 60px;
+      }
+      
+      .main-content {
+        margin-left: 60px;
+      }
+      
+      .banner-title {
+        font-size: 24px;
+      }
+      
+      .game-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">👑</div>
+        <span class="logo-text">GAMEBET</span>
+      </div>
+      
+      <nav style="flex: 1; width: 100%; padding: 0 16px;">
+        <button class="nav-item active">
+          <div class="nav-icon">🏠</div>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item">
+          <div class="nav-icon">👑</div>
+          <span class="nav-label">Casino</span>
+        </button>
+        <button class="nav-item">
+          <div class="nav-icon">⚡</div>
+          <span class="nav-label">Crash</span>
+        </button>
+        <button class="nav-item">
+          <div class="nav-icon">🏆</div>
+          <span class="nav-label">Sports</span>
+        </button>
+        <button class="nav-item">
+          <div class="nav-icon">🎰</div>
+          <span class="nav-label">Slots</span>
+        </button>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <header class="header">
+        <div class="search-bar">
+          <span>🔍</span>
+          <input type="text" placeholder="Search games...">
+        </div>
+        <div class="header-actions">
+          <div class="balance-display">
+            <span>💰</span>
+            <span>$ 84,195.00</span>
+          </div>
+          <div class="balance-display">
+            <span>₿</span>
+            <span>0.384.00</span>
+          </div>
+          <button class="icon-button">🔔</button>
+          <button class="icon-button profile-btn">👤</button>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="banner">
+          <div class="banner-content">
+            <div>
+              <h1 class="banner-title">
+                Get 1 000 Free Spins + <span class="highlight">250%</span> on your deposit
+              </h1>
+              <p class="banner-subtitle">Leading Crypto Casino</p>
+              <p class="banner-description">
+                Enjoy 5000+ crypto games, fast payouts and 24/7 live support. Make the best of the superior Bitcoin Casino.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-tabs">
+          <button class="tab active">All Games <span style="background: rgba(107,79,212,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;">5000</span></button>
+          <button class="tab">Slots <span style="background: rgba(107,79,212,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;">3420</span></button>
+          <button class="tab">Live Casino <span style="background: rgba(107,79,212,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;">156</span></button>
+          <button class="tab">New <span style="background: rgba(107,79,212,0.3); padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-left: 8px;">89</span></button>
+          <button class="btn" style="margin-left: auto;">Show All</button>
+        </div>
+
+        <div>
+          <div class="section-header">
+            <div class="section-title">
+              <span style="font-size: 24px;">🎰</span>
+              <h2>CASINO</h2>
+            </div>
+            <button class="btn">SEE ALL</button>
+          </div>
+          
+          <div class="game-grid">
+            <div class="game-card" style="background: linear-gradient(135deg, #5B4A8F 0%, #3F2966 100%);">
+              <div class="game-image">💥</div>
+              <div class="game-info">
+                <h3 class="game-title">CRASH GAME</h3>
+                <p class="game-provider">Original</p>
+              </div>
+            </div>
+            <div class="game-card" style="background: #4A2F7F;">
+              <div class="game-image">🪙</div>
+              <div class="game-info">
+                <h3 class="game-title">X FLIP</h3>
+                <p class="game-provider">Rollbit</p>
+              </div>
+            </div>
+            <div class="game-card" style="background: #3F2966;">
+              <div class="game-image">🎢</div>
+              <div class="game-info">
+                <h3 class="game-title">ROLLER COASTER</h3>
+                <p class="game-provider">Rollbit</p>
+              </div>
+            </div>
+            <div class="game-card" style="background: #E63946;">
+              <div class="game-image">🎴</div>
+              <div class="game-info">
+                <h3 class="game-title">BACCARAT</h3>
+                <p class="game-provider">Evolution</p>
+              </div>
+            </div>
+            <div class="game-card" style="background: #E87121;">
+              <div class="game-image">🐱</div>
+              <div class="game-info">
+                <h3 class="game-title">BOOK OF CATS</h3>
+                <p class="game-provider">BGaming</p>
+              </div>
+            </div>
+            <div class="game-card" style="background: #6B8E23;">
+              <div class="game-image">🎰</div>
+              <div class="game-info">
+                <h3 class="game-title">X ROULETTE</h3>
+                <p class="game-provider">Rollbit</p>
+              </div>
+            </div>
+            <div class="game-card" style="background: #8B2F97;">
+              <div class="game-image">📼</div>
+              <div class="game-info">
+                <h3 class="game-title">RETRO TAPES</h3>
+                <p class="game-provider">Push Gaming</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
