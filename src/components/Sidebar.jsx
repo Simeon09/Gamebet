@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import HomeIcon from './assets/Homeicon.png';
+import PicksIcon from './assets/Picksicon.png';
+import PromotionsIcon from './assets/Fire.png';
+import TournamentsIcon from './assets/Ludoicon.png';
+import SlotsIcon from './assets/Frame (2).png';
+import HandShakeIcon from './assets/Partners.png';
+import TaskIcon from './assets/Tasks.png';
 
 const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const navItems = [
-    { icon: '🏠', name: 'Home' },
-    { icon: '👑', name: 'Picks' },
-    { icon: '⚡', name: 'Promotions' },
-    { icon: '🏆', name: 'Tournaments' },
-    { icon: '🎰', name: 'Slots' },
+    { image: HomeIcon, name: 'Home' },
+    { image: PicksIcon, name: 'Picks' },
+    { image: PromotionsIcon, name: 'Promotions' },
+    { image: TournamentsIcon, name: 'Tournaments' },
+    { image: SlotsIcon, name: 'Slots' },
+    { image: HandShakeIcon, name: 'Partners' },
+    { Image: TaskIcon, name: 'Tasks' }
+
   ];
 
   return (
@@ -21,7 +31,7 @@ const Sidebar = () => {
       <nav className="flex flex-col space-y-4 w-full">
         {navItems.map((item, index) => (
           <a href="#" key={index} className="text-text-secondary hover:text-text-primary bg-accent-purple p-2 rounded-lg flex items-center">
-            <span className="text-2xl">{item.icon}</span>
+            <img src={item.image} alt={item.name} className="w-6 h-6" />
             {isHovered && <span className="ml-4">{item.name}</span>}
           </a>
         ))}
