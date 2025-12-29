@@ -2,7 +2,6 @@ import React from 'react';
 
 const GameCard = ({ game }) => {
   const { bgColor, image, title, provider } = game;
-
   const imageHeight = title === 'CRASH GAME' ? 'h-70' : 'h-48';
 
   return (

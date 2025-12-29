@@ -3,6 +3,7 @@ import Sidebar from './src/components/Sidebar';
 import Header from './src/components/Header';
 import Banner from './src/components/Banner';
 import GameGrid from './src/components/GameGrid';
+import Logo from './src/components/Logo';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
@@ -24,6 +25,7 @@ const App = () => {
         <Header setSearchQuery={setSearchQuery} />
         <Banner />
         <GameGrid searchQuery={searchQuery} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+        <Logo />
       </main>
     </div>
   );
