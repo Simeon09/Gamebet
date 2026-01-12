@@ -5,12 +5,15 @@ import Filters from './assets/Filter.svg';
 
 const Frame = () => {
     return (
-        <div>
+        <div className='relative' >
+            <div>
+                <img src={CupAward} alt="Cup Award" className='z-10 relative' />
 
-            Frame
-            <img src={CupAward} alt="Cup Award" />
+            </div>
 
-            <div className="flex items-center justify-between w-full px-4 py-3">
+
+            <div className="flex items-center justify-between w-full px-4 py-3 absolute left-1/2 -bottom-[-50px] -translate-x-1/2 
+                  z-50 w-[90%]">
                 <div className='flex items-center gap-2 text-md  items-center'><span> <img src={SevenSeven} alt="Seven Seven" /></span> <h5> LEADER BOARD </h5></div>
                 <div className='flex items-center justify-between gap-4'>
                     <div className='flex items-center gap-3'>
