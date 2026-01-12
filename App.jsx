@@ -5,6 +5,7 @@ import Banner from './src/components/Banner';
 import GameGrid from './src/components/GameGrid';
 import Logo from './src/components/Logo';
 import Frame from './src/components/Frame';
+
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
@@ -28,6 +29,7 @@ const App = () => {
         <GameGrid searchQuery={searchQuery} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         <Logo />
         <Frame />
+
 
       </main>
     </div>
