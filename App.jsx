@@ -5,7 +5,7 @@ import Banner from './src/components/Banner';
 import GameGrid from './src/components/GameGrid';
 import Logo from './src/components/Logo';
 import Frame from './src/components/Frame';
-
+import Footer from './src/components/Footer';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
@@ -21,17 +21,18 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-primary-bg text-white min-h-screen flex font-outfit">
-      <Sidebar />
-      <main className="flex-1 p-8">
-        <Header setSearchQuery={setSearchQuery} />
-        <Banner />
-        <GameGrid searchQuery={searchQuery} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-        <Logo />
-        <Frame />
-
-
-      </main>
+    <div className="bg-primary-bg text-white min-h-screen flex flex-col font-outfit">
+      <div className="flex flex-1">
+        <Sidebar />
+        <main className="flex-1 p-8">
+          <Header setSearchQuery={setSearchQuery} />
+          <Banner />
+          <GameGrid searchQuery={searchQuery} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+          <Logo />
+          <Frame />
+        </main>
+      </div>
+      <Footer />
     </div>
   );
 };

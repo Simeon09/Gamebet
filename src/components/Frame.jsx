@@ -9,12 +9,12 @@ import ArrowDown from './assets/arrow-down.svg';
 
 const Frame = () => {
     return (
-        <div className='relative pb-40' >
+        <div className='relative mb-20' >
             <div>
-                <img src={CupAward} alt="Cup Award" className='z-10 relative' />
+                <img src={CupAward} alt="Cup Award" className='z-10 relative w-full' />
 
             </div>
-            <div className='absolute left-1/2 -bottom-20 -translate-x-1/2 z-50 w-[90%] '>
+            <div className='relative z-50 w-[90%] mx-auto -mt-48'>
 
                 <div className="flex items-center justify-between w-full px-4 py-3 ">
                     <div className='flex items-center gap-2 text-md  items-center'><span> <img src={SevenSeven} alt="Seven Seven" /></span> <h5> LEADER BOARD </h5></div>

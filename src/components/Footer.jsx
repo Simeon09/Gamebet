@@ -1,25 +1,97 @@
 import React from 'react';
+import Gamespot from '../components/assets/Kika.png';
+import Twitter from '../components/assets/mdi-twitter.svg';
+import Instagram from '../components/assets/instagram.svg';
+import TRON from '../components/assets/Tron.svg';
+import Tether from '../components/assets/tether.svg';
+import Bitcon from '../components/assets/Bitcoin.svg';
+import Biswap from '../components/assets/biswap.svg';
+import Ethereum from '../components/assets/ethereum.svg';
+import BNBChain from '../components/assets/BNB.svg';
+import ArrowDown from '../components/assets/arrow-down.svg';
+
+
 
 const Footer = () => {
     return (
-        <div>
+        <div className='mt-32 border-t border-white/10 pt-16 pb-8 bg-[#382653] px-12'>
 
-            <div>
+            <div className='flex justify-between px-8'>
                 <div className='Logo'>
-                    <h5></h5>
+                    <img src={Gamespot} alt='image' />
+                    <span className='flex gap-4 pt-5'>
+
+                        <img src={Twitter} alt='X' />
+                        <img src={Instagram} alt='Instagram' />
+                    </span>
                 </div>
                 <div className='Links'>
-                    <h5>HELPFUL LINKS</h5>
+                    <h6 className="text-accent-white font-bold mb-4">HELPFUL LINKS</h6>
+                    <ul className="text-gray-400 text-sm space-y-2">
+                        <li>All Games</li>
+                        <li>Slots</li>
+                        <li>Rank System</li>
+                        <li>Live Casino</li>
+                        <li>Crash</li>
+
+                    </ul>
                 </div>
                 <div className='Platform'>
-                    <H5>PLATFORM</H5>
+                    <h6 className="text-accent-white font-bold mb-4">PLATFORM</h6>
+                    <ul className="text-gray-400 text-sm space-y-2">
+                        <li>Support</li>
+                        <li>FAQ</li>
+                        <li>Slots</li>
+                        <li>Partnership</li>
+                        <li>Blog</li>
+                        <li>Help Center</li>
+                    </ul>
                 </div>
                 <div className='About'>
-                    <h5>ABOUT US</h5>
+                    <h6 className="text-accent-white font-bold mb-4">ABOUT US</h6>
+                    <ul className="text-gray-400 text-sm space-y-2">
+                        <li>Sports Policy</li>
+                        <li>Responsible Gaming </li>
+                        <li>Privacy Policy</li>
+                        <li>Terms and Conditions</li>
+                        <li>AML Policy</li>
+
+                    </ul>
                 </div>
                 <div className='Community'>
-                    <h5>COMMUNITY</h5>
+                    <h5 className="text-accent-white font-bold mb-4 ">COMMUNITY</h5>
+                    <ul className="text-gray-400 text-sm space-y-2">
+                        <li>AML Policy</li>
+                        <li>Sports Policy</li>
+                        <li>Responsible Gaming</li>
+                        <li>Privacy Policy</li>
+                        <li>Terms and Conditions</li>
+                    </ul>
                 </div>
+            </div>
+            <div className='flex justify-between border-y border-[#625D82] py-[12px] mt-9'>
+                <img src={TRON} alt='TRON' />
+                <img src={Tether} alt='tether' />
+                <img src={Bitcon} alt='bitcon' />
+                <img src={Ethereum} alt='etherum' />
+                <img src={Biswap} alt='Biswap' />
+                <img src={BNBChain} alt='BNB Chain' />
+                <img src={Bitcon} alt='Bitcon' />
+            </div>
+            <div>
+                <p className='text-[#625D82] pt-8 pb-8  border-y border-[#625D82]'> kikabet is operated by Prolific Trade N.V., company registration number 150731, with registered address at Groot Kwartierweg 10, Curaçao and is licensed and authorized by the Government of Curacao and operates under the Master License of Gaming Services Provider, N.V. #365/JAZ License Number: GLH-OCCHKTW0709172018. Payment agent company is Horangi Trading Limited with address Chytron, 30, 2nd floor, Flat/Office A22, 1075, Nicosia, Cyprus and Registration number: HE 411494.
+                    Gambling can be addictive. Please play responsibly. Blaze only accepts customers over 18 years of age.</p>
+            </div>
+            <div className='flex justify-between text-[#B6ADC5] pt-8 pb-8 text-sm'>
+                <div><p>© 2023 kikabet All rights reserved.</p></div>
+                <div><span className='flex'>EN <img src={ArrowDown} alt="Payout Icon" /></span></div>
+            </div>
+            <div className='flex justify-center text-[#E6D3F9] text-sm pb-8 pt-8'>
+                <p className='px-3'> Support    support@kikabet </p>
+                <p className='px-2'> |</p>
+                <p className='px-2'>Partner    spartners@kikabet </p>
+                <p className='px-2'>|</p>
+                <p className='px-2'>Legal    legal@kikabet</p>
             </div>
 
 
