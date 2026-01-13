@@ -6,6 +6,13 @@ import TournamentsIcon from './assets/Ludoicon.png';
 import SlotsIcon from './assets/Frame (2).png';
 import HandShakeIcon from './assets/Partners.png';
 import TaskIcon from './assets/Tasks.png';
+import Icon from './assets/icon.png';
+import Twitter from './assets/icon-1.png';
+import Game from './assets/icon-2.png';
+import Facebook from './assets/icon-3.png';
+import Bitcoin from './assets/icon-4.png';
+import Baby from './assets/icon-5.png';
+import Tera from './assets/icon-6.png';
 
 const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -28,7 +35,7 @@ const Sidebar = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="text-2xl font-bold mb-8 font-spacegrotesk">{isHovered ? 'GAMESPOT' : 'G'}</div>
-      <nav className="flex flex-col space-y-4 w-full">
+      <nav className="flex flex-col space-y-4 w-full flex-1">
         {navItems.map((item, index) => (
           <a href="#" key={index} className="text-text-secondary hover:text-text-primary bg-accent-purple p-2 rounded-lg flex items-center">
             <img src={item.image} alt={item.name} className="w-6 h-6" />
@@ -36,6 +43,16 @@ const Sidebar = () => {
           </a>
         ))}
       </nav>
+      <div className="mt-[5px] scale-90">
+        <img src={Icon} alt='Twitter' className="mt-[10px] scale-90" />
+        <img src={Twitter} alt='Twitter' className="mt-[10px] scale-90" />
+        <img src={Game} alt='Twitter' className="mt-[10px] scale-90" />
+        <img src={Facebook} alt='Twitter' className="mt-[10px] scale-90" />
+        <img src={Bitcoin} alt='Twitter' className="mt-[10px] scale-90" />
+        <img src={Baby} alt='Twitter' className="mt-[10px] scale-90" />
+        <img src={Tera} alt='Tera' className="mt-[10px] scale-90" />
+
+      </div>
     </aside>
   );
 };
