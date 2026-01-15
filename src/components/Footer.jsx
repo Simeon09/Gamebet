@@ -10,14 +10,24 @@ import Ethereum from '../components/assets/ethereum.svg';
 import BNBChain from '../components/assets/BNB.svg';
 import ArrowDown from '../components/assets/arrow-down.svg';
 
+const cryptoLogos = [
+    { src: TRON, alt: 'TRON' },
+    { src: Tether, alt: 'Tether' },
+    { src: Bitcon, alt: 'Bitcoin' },
+    { src: Ethereum, alt: 'Ethereum' },
+    { src: Biswap, alt: 'Biswap' },
+    { src: BNBChain, alt: 'BNB Chain' },
+    { src: Bitcon, alt: 'Bitcoin' }, // Duplicate, consider if this is intentional
+];
+
 
 
 const Footer = () => {
     return (
         <div className='mt-32 border-t border-white/10 pt-16 pb-8 bg-[#382653] px-12'>
 
-            <div className='flex justify-between px-8'>
-                <div className='Logo'>
+            <div className='grid grid-cols-2 gap-8 md:flex md:justify-between px-8'>
+                <div className='Logo col-span-2 md:col-auto'>
                     <img src={Gamespot} alt='image' />
                     <span className='flex gap-4 pt-5'>
 
@@ -69,28 +79,29 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-            <div className='flex justify-between border-y border-[#625D82] py-[12px] mt-9'>
-                <img src={TRON} alt='TRON' />
-                <img src={Tether} alt='tether' />
-                <img src={Bitcon} alt='bitcon' />
-                <img src={Ethereum} alt='etherum' />
-                <img src={Biswap} alt='Biswap' />
-                <img src={BNBChain} alt='BNB Chain' />
-                <img src={Bitcon} alt='Bitcon' />
+            <div className='flex justify-between md:justify-center md:gap-8 border-y border-[#625D82] py-[12px] mt-9'>
+                {cryptoLogos.map((logo, index) => (
+                    <img
+                        key={index}
+                        src={logo.src}
+                        alt={logo.alt}
+                        className={`w-20 h-10 object-contain ${index >= 3 ? 'hidden md:block' : ''}`}
+                    />
+                ))}
             </div>
             <div>
                 <p className='text-[#625D82] pt-8 pb-8  border-y border-[#625D82]'> kikabet is operated by Prolific Trade N.V., company registration number 150731, with registered address at Groot Kwartierweg 10, Curaçao and is licensed and authorized by the Government of Curacao and operates under the Master License of Gaming Services Provider, N.V. #365/JAZ License Number: GLH-OCCHKTW0709172018. Payment agent company is Horangi Trading Limited with address Chytron, 30, 2nd floor, Flat/Office A22, 1075, Nicosia, Cyprus and Registration number: HE 411494.
                     Gambling can be addictive. Please play responsibly. Blaze only accepts customers over 18 years of age.</p>
             </div>
-            <div className='flex justify-between text-[#B6ADC5] pt-8 pb-8 text-sm'>
+            <div className='flex flex-col md:flex-row items-center justify-center gap-4 text-[#B6ADC5] pt-8 pb-8 text-sm'>
                 <div><p>© 2023 kikabet All rights reserved.</p></div>
                 <div><span className='flex'>EN <img src={ArrowDown} alt="Payout Icon" /></span></div>
             </div>
-            <div className='flex justify-center text-[#E6D3F9] text-sm pb-8 pt-8'>
+            <div className='flex flex-col md:flex-row items-center justify-center text-[#E6D3F9] text-sm pb-8 pt-8'>
                 <p className='px-3'> Support    support@kikabet </p>
-                <p className='px-2'> |</p>
+                <p className='px-2 hidden md:block'> |</p>
                 <p className='px-2'>Partner    spartners@kikabet </p>
-                <p className='px-2'>|</p>
+                <p className='px-2 hidden md:block'>|</p>
                 <p className='px-2'>Legal    legal@kikabet</p>
             </div>
 

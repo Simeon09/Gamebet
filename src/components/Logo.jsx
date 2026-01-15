@@ -17,7 +17,8 @@ function Logo() {
 
   return (
     <div> {/* Added flex layout for better display */}
-      <div className='flex flex-wrap  justify-center pt-32'>{/* Flex container for logos with spacing */}
+      <h5 className="pt-9">PROVIDERS</h5>
+      <div className='flex flex-wrap  justify-center pt-3'>{/* Flex container for logos with spacing */}
 
 
         {logoArray.map((logo, index) => (
@@ -26,7 +27,7 @@ function Logo() {
             src={logo}
             alt={`Logo ${index + 1}`}
 
-            className="w-22 h-16 object-contain" // Added sizing and containment
+            className={`w-22 h-16 object-contain ${index >= 3 ? 'hidden md:block' : ''}`}
             onError={(e) => console.error(`Failed to load logo ${index + 1}:`, e.target.src)}
           />
         ))}
@@ -37,4 +38,3 @@ function Logo() {
 }
 
 export default Logo
-

@@ -12,6 +12,7 @@ import AOS from 'aos';
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Games');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     AOS.init({
@@ -20,12 +21,18 @@ const App = () => {
     });
   }, []);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="bg-primary-bg text-white min-h-screen flex flex-col font-outfit">
+      <div>
+        <Header setSearchQuery={setSearchQuery} onToggleSidebar={toggleSidebar} />
+      </div>
       <div className="flex flex-1">
-        <Sidebar />
-        <main className="flex-1 p-8">
-          <Header setSearchQuery={setSearchQuery} />
+        <Sidebar isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
+        <main className="flex-1 p-8 pt-0">
           <Banner />
           <GameGrid searchQuery={searchQuery} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
           <Logo />
