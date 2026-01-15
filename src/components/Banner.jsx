@@ -15,10 +15,10 @@ import Litecoin from './assets/biswap.svg';
 const Banner = () => {
   return (
     <div
-      className="  rounded-lg overflow-hidden"
+      className="-mx-8 md:mx-0 md:rounded-lg overflow-hidden"
     >
       <img src={Space} alt="Banner Background" className="hidden md:block w-full h-auto" />
-      <img src={MobileSpace} alt='Banner' className="block overflow-hidden md:hidden w-full" />
+      <img src={MobileSpace} alt='Banner' className="block w-full h-auto md:hidden" />
       {/* <div className="bg-gradient-to-r from-accent-purple/60 to-accent-pink/60 rounded-lg p-8">
         <h1 className="text-4xl font-bold mb-2 font-spacegrotesk">
           Get 1 000 Free Spins + <span className="text-accent-cyan">250%</span> on your deposit
