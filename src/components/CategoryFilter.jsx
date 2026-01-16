@@ -10,7 +10,7 @@ const CategoryFilter = ({ selectedCategory, setSelectedCategory }) => {
                 {categories.map(category => (
                     <Button
                         key={category}
-                        className={`${selectedCategory === category ? 'bg-secondary-bg' : 'text-gray-400 hover:text-white'}`}
+                        className={`${selectedCategory === category ? 'bg-secondary-bg' : 'text-gray-400 hover:text-white'} ${category !== 'All Games' ? 'hidden md:block' : ''}`}
                         onClick={() => setSelectedCategory(category)}
                     >
                         {category}

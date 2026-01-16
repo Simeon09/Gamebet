@@ -40,7 +40,7 @@ const Frame = () => {
                         <h5>Multiplier</h5>
                         <h5>Payout</h5>
                     </div>
-                    <div className=' mobileframe bg-[#27285180]  px-3 py-3 rounded md-hidden'>
+                    <div className=' mobileframe bg-[#27285180]  px-7 py-3 rounded md-hidden'>
                         <div className='flex  mb-4 md:hidden' >
                             <div className=' flex  w-[80%] rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
 
