@@ -27,7 +27,7 @@ function Logo() {
             src={logo}
             alt={`Logo ${index + 1}`}
 
-            className={`w-22 h-16 object-contain ${index >= 3 ? 'hidden md:block' : ''}`}
+            className={`w-[25%] h-16 object-contain ${index >= 3 ? 'hidden md:block' : ''}`}
             onError={(e) => console.error(`Failed to load logo ${index + 1}:`, e.target.src)}
           />
         ))}

@@ -7,6 +7,7 @@ import Player from './assets/mask-group.png';
 import Bet from './assets/icon-4.png';
 import ArrowDown from './assets/arrow-down.svg';
 import ArrowGrowth from './assets/growthArrow.png'
+import DownArrow from './assets/downArrow.png'
 
 const Frame = () => {
     return (
@@ -15,7 +16,7 @@ const Frame = () => {
                 <img src={CupAward} alt="Cup Award" className='z-10 relative w-full' />
 
             </div>
-            <div className='relative z-50 w-[90%] mx-auto -mt-48'>
+            <div className='relative z-50 w-[90%] mx-auto -mt-[25%] md:-mt-48'>
 
                 <div className="flex items-center justify-between w-full px-4 py-3 ">
                     <div className='flex items-center gap-2 text-md  items-center'><span> <img src={SevenSeven} alt="Seven Seven" /></span> <h5> LEADER BOARD </h5></div>
@@ -39,9 +40,9 @@ const Frame = () => {
                         <h5>Multiplier</h5>
                         <h5>Payout</h5>
                     </div>
-                    <div>
-                        <div className='flex mb-4 md:hidden' >
-                            <div className=' flex rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
+                    <div className=' mobileframe bg-[#27285180]  px-3 py-3 rounded md-hidden'>
+                        <div className='flex  mb-4 md:hidden' >
+                            <div className=' flex  w-[80%] rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
 
                                 <div className='flex rounded-[10px]   items-center gap-2  '> <img src={Player} alt="Player Icon" className="w-6 h-6" /><h5> Fearofmissing <p className='text-[#A9A9A9] text-sm'>
                                     Mystery Museum </p> </h5></div>
@@ -56,7 +57,7 @@ const Frame = () => {
 
                         </div>
                         <div className='flex mb-4 md:hidden ' >
-                            <div className=' flex rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
+                            <div className=' flex  w-[80%] rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
 
                                 <div className='flex rounded-[10px]   items-center gap-2  '> <img src={Player} alt="Player Icon" className="w-6 h-6" /><h5> Fearofmissing <p className='text-[#A9A9A9] text-sm'>
                                     Mystery Museum </p> </h5></div>
@@ -70,8 +71,23 @@ const Frame = () => {
                             <button className='bg-[#00DA1E]   gap-1 px-2 rounded-r-[10px]'> <img src={ArrowGrowth} alt='arrow' className='flex items-center justify-center' /> +$120.5</button>
 
                         </div>
-                        <div className='flex md:hidden ' >
-                            <div className=' flex rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
+                        <div className='flex  mb-4 md:hidden ' >
+                            <div className=' flex   w-[80%] rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
+
+                                <div className='flex rounded-[10px]   items-center gap-2  '> <img src={Player} alt="Player Icon" className="w-6 h-6" /><h5> Fearofmissing <p className='text-[#A9A9A9] text-sm'>
+                                    Mystery Museum </p> </h5></div>
+                                <div className='flex items-center gap-2 '> <img src={Bet} alt="Bet Icon" className="w-4 h-4" /><h5> $10 </h5>
+                                    <br />
+
+                                    <h5 className=" block text-[#00DA1E] font-semibold text-sm tracking-wide"> 3.32x </h5>
+
+                                </div>
+                            </div>
+                            <button className='bg-[#A04613]   gap-1 px-2 rounded-r-[10px]'> <img src={DownArrow} alt='arrow' className='flex items-center justify-center' /> +$120.5</button>
+
+                        </div>
+                        <div className='flex  mb-4 md:hidden ' >
+                            <div className=' flex  w-[80%] rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
 
                                 <div className='flex rounded-[10px]   items-center gap-2  '> <img src={Player} alt="Player Icon" className="w-6 h-6" /><h5> Fearofmissing <p className='text-[#A9A9A9] text-sm'>
                                     Mystery Museum </p> </h5></div>
@@ -84,6 +100,24 @@ const Frame = () => {
                             </div>
                             <button className='bg-[#00DA1E]   gap-1 px-2 rounded-r-[10px]'> <img src={ArrowGrowth} alt='arrow' className='flex items-center justify-center' /> +$120.5</button>
 
+                        </div>
+                        <div className='flex  mb-4 md:hidden ' >
+                            <div className=' flex  w-[80%] rounded-[10px] bg-[#272851] pt-2 pb-2 px-4'>
+
+                                <div className='flex rounded-[10px]   items-center gap-2  '> <img src={Player} alt="Player Icon" className="w-6 h-6" /><h5> Fearofmissing <p className='text-[#A9A9A9] text-sm'>
+                                    Mystery Museum </p> </h5></div>
+                                <div className='flex items-center gap-2 '> <img src={Bet} alt="Bet Icon" className="w-4 h-4" /><h5> $10 </h5>
+                                    <br />
+
+                                    <h5 className=" block text-[#00DA1E] font-semibold text-sm tracking-wide"> 3.32x </h5>
+
+                                </div>
+                            </div>
+                            <button className='bg-[#00DA1E]   gap-1 px-2 rounded-r-[10px]'> <img src={ArrowGrowth} alt='arrow' className='flex items-center justify-center' /> +$120.5</button>
+
+                        </div>
+                        <div className='flex  mb-4 md:hidden ' >
+                            <button className='bg-[#5855E1]  w-[99%]  text-white  py-3 rounded-md'> Submit </button>
                         </div>
                     </div>
 
